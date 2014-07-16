@@ -1,0 +1,15 @@
+[{
+	"modid": "cybernetica",
+	"name": "Cybernetica",
+	"description": "Merge man and machine by attaching cybernetic implants",
+	"version": "",
+	"mcversion": "",
+	"url": "",
+	"updateUrl": "",
+	"authors": [ "Aurilux" ],
+	"credits": "Authored by Aurilux with special thanks to all the modders who release their mods as open source!",
+	"logoFile": "",
+	"screenshots": [],
+	"parent": "",
+	"dependencies": []
+}]

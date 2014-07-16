@@ -1,0 +1,3 @@
+Version 1.1.0
+~Added mod update detection
+~Added Lexica Cybernetica, an informational 'book' for this mod
