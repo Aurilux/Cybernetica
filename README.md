@@ -1,11 +1,4 @@
-ModJam4
+Cybernetica
 =======
 
-The Cybernetica mod for ModJam4, by VivaDaylight3 and Aurilux
-
-Arm texture map
-
-Top 2 chunks = top and bottom
-Middle two chunks = front and back
-Bottom two chunks = left and right side
-Top right = fingers
+Cybernetica adds the creation and installation ("equipping") of cybernetic implants. Implants can be customized with modules that bestows special abilities. For example, installing the night vision module onto the occular implant ("helmet") gives you constant night vision.
