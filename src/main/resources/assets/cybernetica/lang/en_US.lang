@@ -1,0 +1,51 @@
+# Achievements
+achievement.achievement_0=One Small Step...
+achievement.achievement_0.desc=Craft the Integration Table
+
+achievement.achievement_1=We have the technology
+achievement.achievement_1.desc=Craft your first cybernetic implant
+
+#Implants
+implant.eyeImplant.name=Cybernetic Eye
+implant.armImplant.name=Cybernetic Arm
+implant.legImplant.name=Cybernetic Leg
+
+#Modules
+module.moduleActuator.name=Actuator Module
+module.moduleNightvision.name=Night-Vision Module
+module.moduleLexica.name=Lexica Cybernetica
+module.moduleBlastResist.name=Blast Resistance Module
+module.moduleProjectileResist.name=Projectile Resistance Module
+module.moduleFireResist.name=Fire Resistance Module
+module.moduleArmorPlate.name=Armor Plate Module
+
+#Items
+item.circuit.name=Circuit
+item.relay.name=Relay
+item.component.name=Component
+
+#Blocks
+tile.integTable.name=Integration Table
+
+#Misc
+itemGroup.Cybernetica=Cybernetica
+
+#Tooltips
+tooltip.module.none=No modules installed
+tooltip.module.all=All implants
+tooltip.module.head=Head
+tooltip.module.torso=Torso
+tooltip.module.leg=Leg
+tooltip.module.foot=Foot
+
+#Lexica Entries
+lexica.home.info=Greetings, I am Hexas: you're personal virtual intelligence assistant. I will assist you in pursuing a superior existence as a technological being by providing you with any information regarding cybernetics.
+lexica.home.entries=Implants, Modules, Blocks, Items
+
+lexica.implants.info=Implants are superior technological replacements for your body. Each major body area has two implants: a partial implant and a full-body implant. The only differences between the two, aside from appearance, is their module capacity and max reactor tier
+lexica.implants.entries=Head, Torso, Legs, Feet
+
+lexica.head.info=Both head implants can have modules that primarily deal with your senses, either augmenting or enhancing them
+lexica.torso.info=Both torso implants can have modules that primarily deal with your senses, either augmenting or enhancing them
+lexica.legs.info=Both head implants can have modules that primarily deal with your senses, either augmenting or enhancing them
+lexica.feet.info=Both head implants can have modules that primarily deal with your senses, either augmenting or enhancing them

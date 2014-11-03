@@ -17,44 +17,31 @@ buildscript {
 
 apply plugin: 'forge'
 
-//Current version of my mod. Is appended to the end of the jar name
-version = "1.7.10-1.1.0"
+//Current version of my mod. Gets appended to the end of the jar name
+version = "1.0.1"
 //Java file structure/hierarchy
-group = "com.vivalux.cyb" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = "com.aurilux.cyb" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 //Name of the mod. Used to name the resulting jar
 archivesBaseName = "Cybernetica"
 
-//Set the source directories for both source code and other resources (such as art)
-sourceSets.main{
-    //the source code directory
-    java{
-        srcDirs 'common'
-    }
-    //the resource directory
-    resources{
-        srcDirs 'resources'
-    }
-}
-
 minecraft {
-    version = "1.7.10-10.13.0.1180"
-    assetDir = "eclipse/assets"
+    version = "1.7.10-10.13.2.1230"
+
+    replaceIn "lib/CYBModInfo.java"
+    replace "@MOD_VERSION@", "${project.version}"
 }
 
-processResources
-{
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
+version = "1.7.10-" + project.version
 
+processResources {
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-                
+
         // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'mod_version':project.version, 'minecraft_version':project.minecraft.version
     }
-        
+
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'

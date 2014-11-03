@@ -1,0 +1,15 @@
+[{
+	"modid": "Cybernetica",
+	"name": "Cybernetica",
+	"description": "Become a cyborg in this new equipment mod",
+	"version": "${mod_version}",
+	"mcversion": "${minecraft_version}",
+	"url": "",
+	"updateUrl": "",
+	"authorList": [ "Aurilux" ],
+	"credits": "Glowstone Ghost",
+	"logoFile": "",
+	"screenshots": [],
+	"parent": "",
+	"dependencies": []
+}]
