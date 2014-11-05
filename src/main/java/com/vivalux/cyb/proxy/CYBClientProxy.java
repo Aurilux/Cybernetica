@@ -12,6 +12,7 @@ public class CYBClientProxy {
 	public static final ModelBiped modelArm = new ModelArmImplant();
 
     public String currentLexicaTopic = "home";
+    public String previousLexicaTopic = "";
 
     public void init() {
         //register client-side components such as renderers, key handlers, etc

@@ -20,17 +20,20 @@ public class SlotImplant extends Slot {
 		this.slot = slotType;
 	}
 
+    @Override
     public boolean isItemValid(ItemStack stack) {
         if (stack == null) return false;
         Item item = stack.getItem();
         return item instanceof Implant && item.isValidArmor(stack, slot, null);
     }
-	
+
+    @Override
 	public int getSlotStackLimit()
     {
         return 1;
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public IIcon getBackgroundIconIndex()
     {

@@ -1,5 +1,6 @@
 package com.vivalux.cyb.api;
 
+import com.vivalux.cyb.api.Implant.ImplantType;
 import com.vivalux.cyb.util.MiscUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -10,21 +11,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 
+import java.util.EnumSet;
 import java.util.List;
 
 public abstract class Module extends Item {
-    //A set of bits that determine which implants this module can be applied to
-    //TODO perhaps turn these into an Enum? Might be easier to determine tooltip info that way. Might help in removing the instance references as well
-    public static final byte HEAD  = 0x1; // 00000001
-    public static final byte TORSO = 0x2; // 00000010
-    public static final byte LEG   = 0x4; // 00000100
-    public static final byte FOOT  = 0x8; // 00001000
-    public static final byte ALL = HEAD | TORSO | LEG | FOOT;
-
     /**
-     * Which implants this module can be installed on. Will be a combination of the bits above
+     * Which implants this module can be installed on. Will be a combination of the bits listed in ImplantType in the Implant class
      */
-    protected int compatibleImplants = 0;
+    private EnumSet<ImplantType> compatibles = EnumSet.noneOf(ImplantType.class);
 
     /**
      * The implant this module is installed on
@@ -32,8 +26,9 @@ public abstract class Module extends Item {
     //TODO do I even need this?
     public Implant chassis;
 
-    public int getModuleType() {
-        return compatibleImplants;
+    @Override
+    public int getItemStackLimit(ItemStack stack) {
+        return 1;
     }
 
     @Override
@@ -61,43 +56,35 @@ public abstract class Module extends Item {
         return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
     }
 
+    public void setCompatibles(EnumSet<ImplantType> types) {
+        this.compatibles = types;
+    }
+
+    public EnumSet<ImplantType> getCompatibles() {
+        return this.compatibles;
+    }
+
     /**
      * Adds text to the ItemStack's tooltip
      * @param stack the ItemStack of this item
      * @param player the player looking at the stack
      * @param list a list of strings to display in the tooltips. Each entry is it's own line
-     * @param advancedTooltips if true displayed advanced information in the tooltip. Probably for debugging.
+     * @param advancedTooltips if true, display advanced information in the tooltip. Probably for debugging.
      */
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advancedTooltips) {
         String applicableImplants = "";
-        if (this.compatibleImplants == this.ALL) {
-            applicableImplants = StatCollector.translateToLocal("tooltip.module.all");
+        if (this.compatibles == EnumSet.allOf(ImplantType.class)) {
+            applicableImplants = StatCollector.translateToLocal("tooltip.module.all.blah");
         }
         else {
-            if ((this.compatibleImplants & this.HEAD) > 0) {
-                applicableImplants += StatCollector.translateToLocal("tooltip.module.head");
-            }
-
-            if ((this.compatibleImplants & this.TORSO) > 0) {
-                if (applicableImplants != "") {
-                    applicableImplants += ", ";
+            for (ImplantType type : ImplantType.values()) {
+                if (this.isCompatible(type)) {
+                    if (applicableImplants != "") {
+                        applicableImplants += ", ";
+                    }
+                    applicableImplants += StatCollector.translateToLocal("tooltip.module." + type.name().toLowerCase());
                 }
-                applicableImplants += StatCollector.translateToLocal("tooltip.module.torso");
-            }
-
-            if ((this.compatibleImplants & this.LEG) > 0) {
-                if (applicableImplants != "") {
-                    applicableImplants += ", ";
-                }
-                applicableImplants += StatCollector.translateToLocal("tooltip.module.leg");
-            }
-
-            if ((this.compatibleImplants & this.FOOT) > 0) {
-                if (applicableImplants != "") {
-                    applicableImplants += ", ";
-                }
-                applicableImplants += StatCollector.translateToLocal("tooltip.module.foot");
             }
         }
         String info = EnumChatFormatting.GREEN + "Compatible with: " + applicableImplants;
@@ -106,27 +93,10 @@ public abstract class Module extends Item {
 
     /**
      * Determines if the module is compatible with the armorType of the given implant
-     * @param implant the implant to test against
+     * @param type the implantType (armorType) to test against
      * @return true if this module is compatible with the implant
      */
-    public boolean isCompatible(Implant implant) {
-        return this.isCompatible(implant.armorType);
-    }
-
-    /**
-     * Determines if the module is compatible with the armorType of the given implant
-     * @param implantType the implantType (armorType) to test against
-     * @return true if this module is compatible with the implant
-     */
-    public boolean isCompatible(int implantType) {
-        switch(implantType) {
-            case 0:  implantType = HEAD;  break;
-            case 1:  implantType = TORSO; break;
-            case 2:  implantType = LEG;   break;
-            case 3:
-            default: implantType = FOOT;  break;
-        }
-
-        return (compatibleImplants & implantType) > 0;
+    public boolean isCompatible(ImplantType type) {
+        return this.compatibles.contains(type);
     }
 }

@@ -4,6 +4,10 @@ import com.vivalux.cyb.Cybernetica;
 import com.vivalux.cyb.api.Implant;
 import com.vivalux.cyb.client.model.ModelArmImplant;
 import com.vivalux.cyb.init.CYBItems;
+import com.vivalux.cyb.item.module.ModuleArmorPlate;
+import com.vivalux.cyb.item.module.ModuleBlastResist;
+import com.vivalux.cyb.item.module.ModuleFireResist;
+import com.vivalux.cyb.item.module.ModuleProjectileResist;
 import com.vivalux.cyb.util.MiscUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -21,7 +25,7 @@ public class ImplantCyberneticArm extends Implant {
 	// this implant provides modules equipped to the arm
 
 	public ImplantCyberneticArm(String str, String str2, int renderIndex) {
-        super(renderIndex, 1, 1);
+        super(renderIndex, ImplantType.TORSO, 1);
 		CYBItems.setItem(this, str, str2);
 	}
 
@@ -38,7 +42,6 @@ public class ImplantCyberneticArm extends Implant {
     @Override
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot) {
-
 		if ((itemStack != null)) {
 			if (itemStack.getItem() instanceof ImplantCyberneticArm) {
 				ModelArmImplant model = (ModelArmImplant) Cybernetica.proxy.modelArm;
@@ -61,13 +64,13 @@ public class ImplantCyberneticArm extends Implant {
     @Override
     public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
         //Depending on modules, this could reduce damage from blast, fire, projectiles, etc
-        if(Implant.hasInstalledModule(armor, "ModuleFireResist") && source.isFireDamage()) {
+        if(Implant.hasInstalledModule(armor, ModuleFireResist.class) && source.isFireDamage()) {
             return new ArmorProperties(1, 1, MathHelper.floor_double(damage * .125D));
         }
-        else if (Implant.hasInstalledModule(armor, "ModuleBlastResist") && source.isExplosion()) {
+        else if (Implant.hasInstalledModule(armor, ModuleBlastResist.class) && source.isExplosion()) {
             return new ArmorProperties(1, 1, MathHelper.floor_double(damage * .125D));
         }
-        else if (Implant.hasInstalledModule(armor, "ModuleProjectileResist") && source.isProjectile()) {
+        else if (Implant.hasInstalledModule(armor, ModuleProjectileResist.class) && source.isProjectile()) {
             return new ArmorProperties(1, 1, MathHelper.floor_double(damage * .125D));
         }
         return new ArmorProperties(0, 0, 0);
@@ -76,7 +79,7 @@ public class ImplantCyberneticArm extends Implant {
     @Override
     public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) {
         //Without the proper modules, this won't provide any armor protection
-        if (Implant.hasInstalledModule(armor, "ModuleArmorPlate")) {
+        if (Implant.hasInstalledModule(armor, ModuleArmorPlate.class)) {
             return 2;
         }
         return 0;

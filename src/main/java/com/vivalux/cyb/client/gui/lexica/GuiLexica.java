@@ -16,7 +16,7 @@ public class GuiLexica extends GuiScreen {
 
     private LexicaPage currentPage;
 
-    private int guiWidth = 179, guiHeight = 141;
+    private int guiWidth = 176, guiHeight = 166;
     private int left = 0, top = 0;
 
     private double radius = 50, diameter = radius * 2;
@@ -47,7 +47,7 @@ public class GuiLexica extends GuiScreen {
         top = height / 2 - guiHeight / 2;
 
         int idCount = 0;
-        int offset = 20;
+        int offset = 11;
         int buttonHeight = 20;
         int verticalSpacing = 2;
         String[] entries = currentPage.getEntries();
@@ -57,6 +57,9 @@ public class GuiLexica extends GuiScreen {
             int y = top + offset + i * (buttonHeight + verticalSpacing);
             buttonList.add(new GuiButton(idCount, x, y, 50, buttonHeight, entries[i]));
             idCount++;
+        }
+        if (!Cybernetica.proxy.currentLexicaTopic.equals("home")) {
+            buttonList.add(new GuiButton(idCount, left + offset, top + offset + 5 * (buttonHeight + verticalSpacing), 50, buttonHeight, "Home"));
         }
     }
 

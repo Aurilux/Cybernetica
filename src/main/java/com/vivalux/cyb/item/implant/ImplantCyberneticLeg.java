@@ -11,8 +11,8 @@ import net.minecraft.world.World;
 public class ImplantCyberneticLeg extends Implant {
 	// this implant provides modules equipped to the arm
 
-	public ImplantCyberneticLeg(String str, String str2, int renderIndex, int armorType) {
-        super(renderIndex, armorType, 1);
+	public ImplantCyberneticLeg(String str, String str2, int renderIndex) {
+        super(renderIndex, ImplantType.LEG, 1);
         CYBItems.setItem(this, str, str2);
 	}
 

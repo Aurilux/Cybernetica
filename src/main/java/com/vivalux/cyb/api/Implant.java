@@ -16,13 +16,36 @@ import net.minecraftforge.common.ISpecialArmor;
 import java.util.List;
 
 public abstract class Implant extends ItemArmor implements ISpecialArmor {
+    /**
+     * An enum with a set of bits that determine which implants a module can be applied to.
+     * I could have just used a series of bit variables, but enums are a bit easier to manage.
+     * This also replaces the 'armorType' uses inside this mod.
+     *
+     * Bit flags should be used more to determine settings such as text formatting options (Bold, Italic, etc), while
+     * enums are best used to represent 'Types', such as what I've done here
+     */
+    public enum ImplantType {
+        HEAD, TORSO, LEG, FOOT
+    }
+
+    /**
+     * The ImplantType for this specific implant. Used to ensure modules get installed to the appropriate implant
+     */
+    private ImplantType implantType;
+
     //TODO remove this variable after the redesign
     private int moduleCapacity;
 
-	public Implant(int renderIndex, int armorType, int capacity) {
-        super(ArmorMaterial.IRON, renderIndex, armorType);
-        moduleCapacity = capacity;
+	public Implant(int renderIndex, ImplantType type, int capacity) {
+        super(ArmorMaterial.IRON, renderIndex, type.ordinal());
+        this.implantType = type;
+        this.moduleCapacity = capacity;
 	}
+
+    @Override
+    public int getItemStackLimit(ItemStack stack) {
+        return 1;
+    }
 
     @Override
     @SideOnly(Side.CLIENT)
@@ -65,14 +88,20 @@ public abstract class Implant extends ItemArmor implements ISpecialArmor {
             list.add(info);
         }
         else {
-            String info = EnumChatFormatting.RED + StatCollector.translateToLocal("tooltip.modules.none");
+            String info = EnumChatFormatting.RED + StatCollector.translateToLocal("tooltip.module.none");
             list.add(info);
         }
     }
 
+    /**
+     * Unlike normal armor items, the player cannot equip implants without using the integration table
+     * @param stack the ItemStack containing an instance of this item
+     * @param world the world the player is in
+     * @param player the player that just right-clicked the ItemStack
+     * @return the changed stack
+     */
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		//Unlike normal armor items, the player cannot equip this without using the integration table
 		return stack;
 	}
 
@@ -81,19 +110,35 @@ public abstract class Implant extends ItemArmor implements ISpecialArmor {
         return resource.getItem() == CYBItems.component && resource.getItemDamage() == 0 || super.getIsRepairable(object, resource);
     }
 
+    /**
+     * Unlike normal armor items, the player cannot enchant implants
+     * @return an int describing how "enchantable" an item is
+     */
     @Override
     public int getItemEnchantability() {
-        //implants are not enchantable
         return 0;
     }
 
     /**
      * Returns the number of modules this implant can have installed
-     * This will get removed in the next version
+     * TODO This will get removed in the next version
      * @return moduleCapacity
      */
     public int getModuleCapacity() {
-        return moduleCapacity;
+        return this.moduleCapacity;
+    }
+
+    public ImplantType getImplantType() {
+        return this.implantType;
+    }
+
+    /**
+     * The ImplantType enum ordinal values corresponds to the respective armor slots. This is a helper method to get
+     * that information
+     * @return the ordinal value of the ImplantType
+     */
+    public int implantTypeAsArmor() {
+        return this.getImplantType().ordinal();
     }
 
     /**
@@ -134,12 +179,12 @@ public abstract class Implant extends ItemArmor implements ISpecialArmor {
     /**
      * Checks to see if a specific module, given by its name, is installed
      * @param implant the inplant to check
-     * @param moduleName the name of the module to find
+     * @param moduleClass the class of the module to find
      * @return true if the module is installed, false otherwise
      */
-    public static boolean hasInstalledModule(ItemStack implant, String moduleName) {
+    public static boolean hasInstalledModule(ItemStack implant, Class moduleClass) {
         for (ItemStack i : getInstalledModules(implant, ((Implant) implant.getItem()).getModuleCapacity())) {
-            if (i != null && i.getItem().getClass().getSimpleName().equals(moduleName)) {
+            if (i != null && i.getItem().getClass().equals(moduleClass)) {
                 return true;
             }
         }

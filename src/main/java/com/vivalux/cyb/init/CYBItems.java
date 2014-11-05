@@ -21,8 +21,8 @@ public class CYBItems {
         //relay = new Relay("relay", "Relay");
 
         //Implants
-        implantEye = new ImplantCyberneticEye("eyeImplant", "Cybernetic eye", 0);
-        implantArm = new ImplantCyberneticArm("armImplant", "Cybernetic arm", 0);
+        implantEye = new ImplantCyberneticEye("eyeImplant", "Cybernetic eye", 1);
+        implantArm = new ImplantCyberneticArm("armImplant", "Cybernetic arm", 1);
         //legImplant = new ImplantCyberneticLeg("legImplant", "Cybernetic Leg", 0, 2);
 
         //Modules

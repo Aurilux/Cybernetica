@@ -1,6 +1,5 @@
 package com.vivalux.cyb.client.gui.lexica;
 
-import com.sun.istack.internal.NotNull;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
@@ -100,7 +99,7 @@ public class Tag extends GuiButton implements Comparable {
     }
 
     @Override
-    public int compareTo(@NotNull Object otherTag) {
+    public int compareTo(Object otherTag) {
         return this.zPosition - ((Tag)otherTag).zPosition;
     }
 

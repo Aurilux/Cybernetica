@@ -42,10 +42,24 @@ tooltip.module.foot=Foot
 lexica.home.info=Greetings, I am Hexas: you're personal virtual intelligence assistant. I will assist you in pursuing a superior existence as a technological being by providing you with any information regarding cybernetics.
 lexica.home.entries=Implants, Modules, Blocks, Items
 
-lexica.implants.info=Implants are superior technological replacements for your body. Each major body area has two implants: a partial implant and a full-body implant. The only differences between the two, aside from appearance, is their module capacity and max reactor tier
+lexica.implants.info=Implants are superior technological replacements for your body. Each major body area can be replaced by an implant, but you can only 'equip' implants from the Integration Table. Implants display which modules they have installed in their tooltip.
 lexica.implants.entries=Head, Torso, Legs, Feet
 
-lexica.head.info=Both head implants can have modules that primarily deal with your senses, either augmenting or enhancing them
-lexica.torso.info=Both torso implants can have modules that primarily deal with your senses, either augmenting or enhancing them
-lexica.legs.info=Both head implants can have modules that primarily deal with your senses, either augmenting or enhancing them
-lexica.feet.info=Both head implants can have modules that primarily deal with your senses, either augmenting or enhancing them
+lexica.modules.info=Modules are modular components that you install into your implants to improve their capabilities. Some modules can only be installed in certain implants and will be listed in their tooltip.
+lexica.modules.entries=Resist, Vision, Plating, Lexica
+
+lexica.blocks.info=There is currently only one block provided by Cybernetica: the Integration Table. The Integration Table is the block that allows you to install and remove implants; this is the only way to do so. You cannot manually equip or unequip implants.
+lexica.blocks.entries=
+
+lexica.items.info=Items provided by Cybernetica include implants, modules, etc
+lexica.items.entries=Implants, Module, Circuit
+
+lexica.head.info=Head implants can have modules that primarily deal with your senses, either augmenting or enhancing them.
+lexica.torso.info=Torso implants can have most of the weapon modules
+lexica.legs.info=Leg implants can have modules that primarily deal with movement.
+lexica.feet.info=Feet implants are really only used as catch all for any other generic modules.
+lexica.circuit.info=A major component in most Cybernetica recipes, a circuit is the technological foundation of cybernetics.
+lexica.resist.info=Resist modules provide protection from specific types of damage and can be installed on any implants. There is a resist module for each type of damage resistance enchantment.
+lexica.vision.info=Vision modules allow you so see the world in different ways and can only be installed on head implants. The only module of this type that is provided is the Night-Vision module. It gives you a permanent night vision potion effect so long as the module is installed.
+lexica.plating.info=Plating modules allow your implants to provide armor protection like other armor.
+lexica.lexica.info=Though it currently provides no functionality, this lexicon can be installed as a module.

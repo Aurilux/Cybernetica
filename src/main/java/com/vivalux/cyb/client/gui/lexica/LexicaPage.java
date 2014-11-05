@@ -24,7 +24,7 @@ public class LexicaPage {
     /**
      * The width of the info display area
      */
-    private int width = 100;
+    private int width = 95;
     /**
      * The height of the info display area
      */
@@ -78,9 +78,9 @@ public class LexicaPage {
 
         ScaledResolution res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         //int x = this.left;
-        int x = res.getScaledWidth() / 2 + 10;
+        int x = res.getScaledWidth() / 2 - 11;
         //int y = this.top;
-        int y = res.getScaledHeight() / 2 - this.height / 2;
+        int y = res.getScaledHeight() / 2 - this.height / 2 - 19;
         String[] words = text.split(" ");
         ArrayList<String> lines = new ArrayList<String>();
         String currentLine = "";

@@ -10,10 +10,5 @@ public class CYBTabs {
         public Item getTabIconItem() {
             return CYBItems.circuit;
         }
-
-        @Override
-        public boolean hasSearchBar() {
-            return true;
-        }
     };
 }

@@ -1,5 +1,7 @@
 package com.vivalux.cyb.inventory.container;
 
+import com.vivalux.cyb.api.Implant;
+import com.vivalux.cyb.api.Implant.ImplantType;
 import com.vivalux.cyb.api.Module;
 import com.vivalux.cyb.inventory.slot.SlotImplant;
 import com.vivalux.cyb.inventory.slot.SlotModule;
@@ -8,12 +10,18 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemArmor;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ContainerIntegrationTable extends Container {
+    /**
+     * The TileEntityIntegrationTable reference
+     */
 	private TileEntityIntegrationTable tile;
+    /**
+     * The World reference
+     */
     private World world;
 
 	public ContainerIntegrationTable(World world, InventoryPlayer inventoryPlayer, TileEntityIntegrationTable tileEntity) {
@@ -21,11 +29,15 @@ public class ContainerIntegrationTable extends Container {
         this.world = world;
         tile.openInventory();
 
-        for (int i = 0; i < 4; i++) {
-            //implant slots
-            this.addSlotToContainer(new SlotImplant(tile, 3 - i, i * 18 + 53, 20, i));
-            //module slots
-            this.addSlotToContainer(new SlotModule(tile, 3 - i + 4, i * 18 + 53, 53, i));
+        for (int j = 0; j < 2; j++) {
+            for (int i = 0; i < 4; i++) {
+                if (j == 0) { //implant slots
+                    this.addSlotToContainer(new SlotImplant(tile, 3 - i, i * 18 + 53, 20, i));
+                }
+                else { //j == 1; module slots
+                    this.addSlotToContainer(new SlotModule(tile, 3 - i + 4, i * 18 + 53, 53, i));
+                }
+            }
         }
 		bindPlayerInventory(inventoryPlayer);
 	}
@@ -34,10 +46,10 @@ public class ContainerIntegrationTable extends Container {
         for (int row = 0; row < 4; row++) {
             for (int col = 0; col < 9; col++) {
                 if (row < 3) { //the player's inventory
-                    addSlotToContainer(new Slot(inventoryPlayer, col + row * 9 + 9, 8 + col * 18, 84 + row * 18));
+                    this.addSlotToContainer(new Slot(inventoryPlayer, col + row * 9 + 9, 8 + col * 18, 84 + row * 18));
                 }
                 else { //row == 3, the player's hotbar
-                    addSlotToContainer(new Slot(inventoryPlayer, col, 8 + col * 18, 142));
+                    this.addSlotToContainer(new Slot(inventoryPlayer, col, 8 + col * 18, 142));
                 }
             }
         }
@@ -71,6 +83,7 @@ public class ContainerIntegrationTable extends Container {
      */
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex) {
+        //TODO REMEMBER This moves entire stacks of item into the slot even though the max stack size is 1
         ItemStack itemstack = null;
         Slot slot = (Slot)this.inventorySlots.get(slotIndex);
 
@@ -79,21 +92,27 @@ public class ContainerIntegrationTable extends Container {
             itemstack = itemstack1.copy();
 
             //the shift-clicked slot is part of the player's inventory (main or hotbar) if the slot slotIndex is
-            //greater than the size of Integration Table's inventory (minus one), which includes implants and modules
-            if (slotIndex > tile.getSizeInventory() - 1) {
-                if (itemstack.getItem() instanceof ItemArmor &&
-                        !((Slot)this.inventorySlots.get(((ItemArmor)itemstack.getItem()).armorType)).getHasStack()) {
-                    int j = ((ItemArmor)itemstack.getItem()).armorType;
+            //greater than the size of Integration Table's inventory; slotIndex 8-43, 0-7 is implants and modules
+            if (slotIndex >= tile.getSizeInventory()) {
+                Item item = itemstack.getItem();
+                if (item instanceof Implant && !this.getSlot(((Implant)item).implantTypeAsArmor()).getHasStack()) {
+                    int j = ((Implant)itemstack.getItem()).implantTypeAsArmor();
 
                     if (!this.mergeItemStack(itemstack1, j, j + 1, false)) {
                         return null;
                     }
                 }
-                else if (itemstack.getItem() instanceof Module &&
-                        !((Slot)this.inventorySlots.get(4 + ((Module)itemstack.getItem()).getModuleType())).getHasStack()) {
-                    int j = 4 + ((Module)itemstack.getItem()).getModuleType();
+                else if (item instanceof Module) {
+                    Module module = (Module)item;
+                    int j = 0;
+                    for (ImplantType type : module.getCompatibles()) {
+                        if (!this.getSlot(4 + type.ordinal()).getHasStack()) {
+                            j = 4 + type.ordinal();
+                            break;
+                        }
+                    }
 
-                    if (!this.mergeItemStack(itemstack1, j, j + 1, false)) {
+                    if (j != 0 && !this.mergeItemStack(itemstack1, j, j + 1, false)) {
                         return null;
                     }
                 }
@@ -127,10 +146,5 @@ public class ContainerIntegrationTable extends Container {
             slot.onPickupFromSlot(player, itemstack1);
         }
         return itemstack;
-	}
-	
-	@Override
-	public boolean mergeItemStack(ItemStack stack, int start, int end, boolean reverse) {
-		return super.mergeItemStack(stack, start, end, reverse);
 	}
 }

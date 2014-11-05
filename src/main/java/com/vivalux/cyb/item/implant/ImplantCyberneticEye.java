@@ -4,6 +4,7 @@ import com.vivalux.cyb.Cybernetica;
 import com.vivalux.cyb.api.Implant;
 import com.vivalux.cyb.client.model.ModelEyeImplant;
 import com.vivalux.cyb.init.CYBItems;
+import com.vivalux.cyb.item.module.*;
 import com.vivalux.cyb.util.MiscUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -24,7 +25,7 @@ public class ImplantCyberneticEye extends Implant {
 	// nightvision, thermal vision, aura vision, unique hud, etc
 
 	public ImplantCyberneticEye(String str, String str2, int renderIndex) {
-		super(renderIndex, 0, 1);
+		super(renderIndex, ImplantType.HEAD, 1);
 		CYBItems.setItem(this, str, str2);
 	}
 
@@ -41,16 +42,14 @@ public class ImplantCyberneticEye extends Implant {
 
     @Override
     protected void implantTick(World world, EntityPlayer player, ItemStack armor) {
-        if (Implant.hasInstalledModule(armor, "ModuleNightvision")) {
+        if (Implant.hasInstalledModule(armor, ModuleNightvision.class)) {
             player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 3, 4, true));
         }
     }
 
     @Override
 	@SideOnly(Side.CLIENT)
-	public ModelBiped getArmorModel(EntityLivingBase entityLiving,
-			ItemStack itemStack, int armorSlot) {
-
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot) {
 		if ((itemStack != null)) {
 			if (itemStack.getItem() instanceof ImplantCyberneticEye) {
 				ModelEyeImplant model = (ModelEyeImplant) Cybernetica.proxy.modelEye;
@@ -68,13 +67,13 @@ public class ImplantCyberneticEye extends Implant {
     @Override
     public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
         //Depending on modules, this could reduce damage from blast, fire, projectiles, etc
-        if(Implant.hasInstalledModule(armor, "ModuleFireResist") && source.isFireDamage()) {
+        if(Implant.hasInstalledModule(armor, ModuleFireResist.class) && source.isFireDamage()) {
             return new ArmorProperties(1, 1, MathHelper.floor_double(damage * .125D));
         }
-        else if (Implant.hasInstalledModule(armor, "ModuleBlastResist") && source.isExplosion()) {
+        else if (Implant.hasInstalledModule(armor, ModuleBlastResist.class) && source.isExplosion()) {
             return new ArmorProperties(1, 1, MathHelper.floor_double(damage * .125D));
         }
-        else if (Implant.hasInstalledModule(armor, "ModuleProjectileResist") && source.isProjectile()) {
+        else if (Implant.hasInstalledModule(armor, ModuleProjectileResist.class) && source.isProjectile()) {
             return new ArmorProperties(1, 1, MathHelper.floor_double(damage * .125D));
         }
         return new ArmorProperties(0, 0, 0);
@@ -83,7 +82,7 @@ public class ImplantCyberneticEye extends Implant {
     @Override
     public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) {
         //Without the proper modules, this won't provide any armor protection
-        if (Implant.hasInstalledModule(armor, "ModuleArmorPlate")) {
+        if (Implant.hasInstalledModule(armor, ModuleArmorPlate.class)) {
             return 1;
         }
         return 0;

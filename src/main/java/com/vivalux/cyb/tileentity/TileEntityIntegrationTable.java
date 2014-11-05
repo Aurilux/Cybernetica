@@ -82,6 +82,9 @@ public class TileEntityIntegrationTable extends TileEntity implements IInventory
                     //if we remove the implant, the module has to go along with it
                     this.setInventorySlotContents(index + INV_SIZE, null);
                 }
+                else {
+                    oldStack.stackTagCompound = null;
+                }
             }
         }
         //change the slot contents once everything is processed or we'd encounter some NullPointer errors
