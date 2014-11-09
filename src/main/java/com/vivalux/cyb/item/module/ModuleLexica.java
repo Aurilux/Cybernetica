@@ -4,7 +4,7 @@ import com.vivalux.cyb.Cybernetica;
 import com.vivalux.cyb.api.Implant.ImplantType;
 import com.vivalux.cyb.api.Module;
 import com.vivalux.cyb.init.CYBItems;
-import com.vivalux.cyb.init.CYBMisc;
+import com.vivalux.cyb.lib.CYBSettings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -20,7 +20,7 @@ public class ModuleLexica extends Module {
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
         Cybernetica.proxy.currentLexicaTopic = "home";
-        player.openGui(Cybernetica.instance, CYBMisc.GUI_ID_LEXICON, world, 0, 0, 0);
+        player.openGui(Cybernetica.instance, CYBSettings.GUI_ID_LEXICON, world, 0, 0, 0);
         return stack;
     }
 }

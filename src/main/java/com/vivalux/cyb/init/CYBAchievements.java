@@ -11,6 +11,7 @@ public class CYBAchievements {
     private static Achievement[] achievements;
     private static AchievementInfo[] achievementInfo = {
         new AchievementInfo(0, 0, new ItemStack(CYBBlocks.integTable), false, -1),
+        new AchievementInfo(2, 1, new ItemStack(CYBItems.implantEye), false, 0)
     };
 
     public static void init() {
@@ -51,8 +52,9 @@ public class CYBAchievements {
         public ItemStack icon;
         /** Whether the achievement is special. Special achievement icons will be 'spiked' */
         public boolean isSpecial = false;
-        /** The parent achievement of this achievement. -1 indicates no parent.
-         *  Any other number is the index of the achievement in the 'achievements' array
+        /**
+         * The parent achievement of this achievement. -1 indicates no parent.
+         * Any other number is the index of the achievement in the 'achievements' array
          */
         public int parent;
 

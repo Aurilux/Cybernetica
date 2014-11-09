@@ -1,9 +1,14 @@
 package com.vivalux.cyb.init;
 
-public class CYBMisc {
-    public static final int GUI_ID_INTEG = 0;
-    public static final int GUI_ID_LEXICON = 1;
+import com.vivalux.cyb.lib.CYBModInfo;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 
-    //Determines if hardcore mode is enabled
-    public static boolean HARDCORE_MODE = false;
+public class CYBMisc {
+    public static final CreativeTabs tab = new CreativeTabs(CYBModInfo.MOD_ID) {
+        @Override
+        public Item getTabIconItem() {
+            return CYBItems.circuit;
+        }
+    };
 }

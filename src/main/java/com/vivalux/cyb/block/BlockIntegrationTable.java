@@ -2,7 +2,7 @@ package com.vivalux.cyb.block;
 
 import com.vivalux.cyb.Cybernetica;
 import com.vivalux.cyb.init.CYBBlocks;
-import com.vivalux.cyb.init.CYBMisc;
+import com.vivalux.cyb.lib.CYBSettings;
 import com.vivalux.cyb.tileentity.TileEntityIntegrationTable;
 import com.vivalux.cyb.util.MiscUtils;
 import cpw.mods.fml.relauncher.Side;
@@ -63,7 +63,7 @@ public class BlockIntegrationTable extends Block implements ITileEntityProvider 
             TileEntityIntegrationTable tile = (TileEntityIntegrationTable) world.getTileEntity(x, y, z);
             if (tile != null) {
                 tile.setPlayer(player);
-                player.openGui(Cybernetica.instance, CYBMisc.GUI_ID_INTEG, world, x, y, z);
+                player.openGui(Cybernetica.instance, CYBSettings.GUI_ID_INTEG, world, x, y, z);
             }
         }
 		return true;

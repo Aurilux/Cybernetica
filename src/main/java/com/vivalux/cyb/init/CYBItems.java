@@ -42,7 +42,7 @@ public class CYBItems {
 	public static void setItem(Item item, String str, String str2) {
 		item.setUnlocalizedName(str);
 		item.setTextureName(str);
-		item.setCreativeTab(CYBTabs.tab);
+		item.setCreativeTab(CYBMisc.tab);
 		GameRegistry.registerItem(item, str2);
 	}
 }

@@ -1,7 +1,7 @@
 package com.vivalux.cyb.handler;
 
-import com.vivalux.cyb.init.CYBMisc;
 import com.vivalux.cyb.lib.CYBModInfo;
+import com.vivalux.cyb.lib.CYBSettings;
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.common.config.Configuration;
@@ -24,7 +24,7 @@ public class ConfigHandler {
         String category = "misc";
         Property currentConfig = config.get(category, "hardcore_mode", false);
         currentConfig.comment = "Whether hardcore mode is enabled. In hardcore mode you are severely penalized for removing an implant.";
-        CYBMisc.HARDCORE_MODE = currentConfig.getBoolean(CYBMisc.HARDCORE_MODE);
+        CYBSettings.HARDCORE_MODE = currentConfig.getBoolean(CYBSettings.HARDCORE_MODE);
 
         //load variable values here
         if (config.hasChanged()) {

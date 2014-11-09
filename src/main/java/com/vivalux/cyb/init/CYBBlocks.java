@@ -30,7 +30,7 @@ public class CYBBlocks {
 	public static void setBlock(Block block, String str, String str2) {
 		block.setBlockName(str);
 		block.setBlockTextureName(str);
-        block.setCreativeTab(CYBTabs.tab);
+        block.setCreativeTab(CYBMisc.tab);
 		GameRegistry.registerBlock(block, str2);
 	}
 }
