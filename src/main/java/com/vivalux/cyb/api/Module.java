@@ -75,7 +75,7 @@ public abstract class Module extends Item {
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advancedTooltips) {
         String applicableImplants = "";
         if (this.compatibles == EnumSet.allOf(ImplantType.class)) {
-            applicableImplants = StatCollector.translateToLocal("tooltip.module.all.blah");
+            applicableImplants = StatCollector.translateToLocal("tooltip.module.all");
         }
         else {
             for (ImplantType type : ImplantType.values()) {

@@ -1,6 +1,6 @@
 package com.vivalux.cyb.handler;
 
-import com.vivalux.cyb.lib.CYBModInfo;
+import com.vivalux.cyb.CYBModInfo;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
@@ -12,7 +12,7 @@ import java.net.URL;
 import java.util.Properties;
 
 public class UpdateHandler {
-    private final String MESSAGE_PREFACE = "[\u00A75" + CYBModInfo.MOD_NAME + "\u00A7r] A new version of " + CYBModInfo.MOD_NAME + " is available.";
+    private final String MESSAGE_PREFACE = "[\u00A73" + CYBModInfo.MOD_NAME + "\u00A7r] A new version of " + CYBModInfo.MOD_NAME + " is available.";
     private String updateThread = null;
 
     @SubscribeEvent

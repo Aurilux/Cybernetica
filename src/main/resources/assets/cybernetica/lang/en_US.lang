@@ -52,7 +52,7 @@ lexica.blocks.info=There is currently only one block provided by Cybernetica: th
 lexica.blocks.entries=
 
 lexica.items.info=Items provided by Cybernetica include implants, modules, etc
-lexica.items.entries=Implants, Module, Circuit
+lexica.items.entries=Implants, Modules, Circuit
 
 lexica.head.info=Head implants can have modules that primarily deal with your senses, either augmenting or enhancing them.
 lexica.torso.info=Torso implants can have most of the weapon modules

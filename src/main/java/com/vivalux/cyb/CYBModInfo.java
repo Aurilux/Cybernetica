@@ -1,4 +1,4 @@
-package com.vivalux.cyb.lib;
+package com.vivalux.cyb;
 
 public class CYBModInfo {
 

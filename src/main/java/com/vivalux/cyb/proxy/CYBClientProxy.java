@@ -31,7 +31,7 @@ public class CYBClientProxy {
     Initialize all tile entities
      */
     public void registerTileEntities() {
-        GameRegistry.registerTileEntityWithAlternatives(TileEntityIntegrationTable.class, "integTable", "tile.integTable");
+        GameRegistry.registerTileEntity(TileEntityIntegrationTable.class, "integTable");
     }
 
     /*

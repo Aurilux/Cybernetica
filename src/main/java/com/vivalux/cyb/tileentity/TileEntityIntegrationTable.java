@@ -22,7 +22,8 @@ public class TileEntityIntegrationTable extends TileEntity implements IInventory
      */
 	private ItemStack[] inventory;
     /**
-     * Player reference. Gets set by ContainerIntegrationTable constructor.
+     * Player reference. Gets set when the player activates the block.
+     * TODO keeping track of only one player may not work correctly. What happens if a player activates it while another player is already interacting with it?
      */
     private EntityPlayer player;
 
@@ -134,7 +135,7 @@ public class TileEntityIntegrationTable extends TileEntity implements IInventory
             this.setInventorySlotContents(i, armor[i]);
         }
 
-        //worldObj.addBlockEvent() call?
+        //worldObj.addBlockEvent() TODO call?
 	}
 
     /**
@@ -157,16 +158,15 @@ public class TileEntityIntegrationTable extends TileEntity implements IInventory
         //Save the armor changes to the player by copying our armor inventory to the player's armor inventory
         System.arraycopy(this.inventory, 0, player.inventory.armorInventory, 0, 4);
 
-        //worldObj.addBlockEvent() call?
+        //worldObj.addBlockEvent(); TODO call?
     }
 
     /**
      * Drops any items in this inventory similar to most crafting inventories that don't store contents.
-     * In our instance, all our contents/slots are saved so none of the items in this inventory will be dropped.
+     * In our instance, all our contents/slots are saved except modules without corresponding implants.
      */
     @Override
     public ItemStack getStackInSlotOnClosing(int slotIndex) {
-        //Only modules without corresponding implants will be dropped
         ItemStack module = this.getStackInSlot(slotIndex);
         if (slotIndex >= 4 && module != null) { //module index
             ItemStack implant = this.getStackInSlot(slotIndex - INV_SIZE);

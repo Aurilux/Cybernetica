@@ -1,6 +1,6 @@
 package com.vivalux.cyb.util;
 
-import com.vivalux.cyb.lib.CYBModInfo;
+import com.vivalux.cyb.CYBModInfo;
 
 public class MiscUtils {
     /**

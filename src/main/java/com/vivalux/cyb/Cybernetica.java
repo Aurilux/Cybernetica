@@ -5,7 +5,6 @@ import com.vivalux.cyb.init.CYBAchievements;
 import com.vivalux.cyb.init.CYBBlocks;
 import com.vivalux.cyb.init.CYBItems;
 import com.vivalux.cyb.init.CYBRecipes;
-import com.vivalux.cyb.lib.CYBModInfo;
 import com.vivalux.cyb.proxy.CYBClientProxy;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;

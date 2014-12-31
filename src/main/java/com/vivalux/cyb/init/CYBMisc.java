@@ -1,6 +1,6 @@
 package com.vivalux.cyb.init;
 
-import com.vivalux.cyb.lib.CYBModInfo;
+import com.vivalux.cyb.CYBModInfo;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 

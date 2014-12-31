@@ -31,6 +31,7 @@ public class PlayerEventHandler {
 
     /**
      * Stores cybernetic implants for a specific player in a hashmap on death
+     * TODO this equips implants that aren't currently equipped as armor. Fot it so that it only stores implants equipped as armor
      * @param e the PlayersDropsEvent event
      */
     @SubscribeEvent

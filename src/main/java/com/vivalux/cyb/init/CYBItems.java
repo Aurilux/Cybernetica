@@ -1,5 +1,6 @@
 package com.vivalux.cyb.init;
 
+import com.vivalux.cyb.CYBModInfo;
 import com.vivalux.cyb.item.Circuit;
 import com.vivalux.cyb.item.implant.ImplantCyberneticArm;
 import com.vivalux.cyb.item.implant.ImplantCyberneticEye;
@@ -21,20 +22,20 @@ public class CYBItems {
         //relay = new Relay("relay", "Relay");
 
         //Implants
-        implantEye = new ImplantCyberneticEye("eyeImplant", "Cybernetic eye", 1);
-        implantArm = new ImplantCyberneticArm("armImplant", "Cybernetic arm", 1);
+        implantEye = new ImplantCyberneticEye("eyeImplant", "CyberneticEye", 1);
+        implantArm = new ImplantCyberneticArm("armImplant", "CyberneticArm", 1);
         //legImplant = new ImplantCyberneticLeg("legImplant", "Cybernetic Leg", 0, 2);
 
         //Modules
         //moduleActuator = new ModuleActuator("moduleActuator", "Actuator Module");
-        moduleLexica = new ModuleLexica("moduleLexica", "Lexica Cybernetica");
+        moduleLexica = new ModuleLexica("moduleLexica", "LexicaCybernetica");
 
-        moduleNightvision = new ModuleNightvision("moduleNightvision", "Night-Vision Module");
+        moduleNightvision = new ModuleNightvision("moduleNightvision", "NightVisionModule");
 
-        moduleBlastResist = new ModuleBlastResist("moduleBlastResist", "Blast Resistance Module");
-        moduleFireResist = new ModuleFireResist("moduleFireResist", "Fire Resistance Module");
-        moduleProjectileResist = new ModuleProjectileResist("moduleProjectileResist", "Projectile Resistance Module");
-        moduleArmorPlate = new ModuleArmorPlate("moduleArmorPlate", "Armor Plate Module");
+        moduleBlastResist = new ModuleBlastResist("moduleBlastResist", "BlastResistanceModule");
+        moduleFireResist = new ModuleFireResist("moduleFireResist", "FireResistanceModule");
+        moduleProjectileResist = new ModuleProjectileResist("moduleProjectileResist", "ProjectileResistanceModule");
+        moduleArmorPlate = new ModuleArmorPlate("moduleArmorPlate", "ArmorPlateModule");
 
     }
 
@@ -43,6 +44,6 @@ public class CYBItems {
 		item.setUnlocalizedName(str);
 		item.setTextureName(str);
 		item.setCreativeTab(CYBMisc.tab);
-		GameRegistry.registerItem(item, str2);
+		GameRegistry.registerItem(item, str2, CYBModInfo.MOD_ID);
 	}
 }

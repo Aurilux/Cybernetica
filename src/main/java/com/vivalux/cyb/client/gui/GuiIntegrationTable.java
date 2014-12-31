@@ -1,8 +1,8 @@
 package com.vivalux.cyb.client.gui;
 
 import com.vivalux.cyb.inventory.container.ContainerIntegrationTable;
-import com.vivalux.cyb.lib.CYBResources;
 import com.vivalux.cyb.tileentity.TileEntityIntegrationTable;
+import com.vivalux.cyb.util.CYBResources;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.world.World;

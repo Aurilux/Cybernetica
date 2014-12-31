@@ -15,18 +15,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ContainerIntegrationTable extends Container {
-    /**
-     * The TileEntityIntegrationTable reference
-     */
+    /** The TileEntityIntegrationTable reference */
 	private TileEntityIntegrationTable tile;
-    /**
-     * The World reference
-     */
+
+    /** The World reference */
     private World world;
 
 	public ContainerIntegrationTable(World world, InventoryPlayer inventoryPlayer, TileEntityIntegrationTable tileEntity) {
-		this.tile = tileEntity;
         this.world = world;
+		tile = tileEntity;
         tile.openInventory();
 
         for (int j = 0; j < 2; j++) {
@@ -46,10 +43,10 @@ public class ContainerIntegrationTable extends Container {
         for (int row = 0; row < 4; row++) {
             for (int col = 0; col < 9; col++) {
                 if (row < 3) { //the player's inventory
-                    this.addSlotToContainer(new Slot(inventoryPlayer, col + row * 9 + 9, 8 + col * 18, 84 + row * 18));
+                    this.addSlotToContainer(new Slot(inventoryPlayer, col + row * 9 + 9, tile.getSizeInventory() + col * 18, 84 + row * 18));
                 }
                 else { //row == 3, the player's hotbar
-                    this.addSlotToContainer(new Slot(inventoryPlayer, col, 8 + col * 18, 142));
+                    this.addSlotToContainer(new Slot(inventoryPlayer, col, tile.getSizeInventory() + col * 18, 142));
                 }
             }
         }
@@ -84,6 +81,7 @@ public class ContainerIntegrationTable extends Container {
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex) {
         //TODO REMEMBER This moves entire stacks of item into the slot even though the max stack size is 1
+        //TODO check out Xthuoth's Immixer container to update this
         ItemStack itemstack = null;
         Slot slot = (Slot)this.inventorySlots.get(slotIndex);
 

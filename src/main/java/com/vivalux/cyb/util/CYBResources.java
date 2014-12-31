@@ -1,5 +1,6 @@
-package com.vivalux.cyb.lib;
+package com.vivalux.cyb.util;
 
+import com.vivalux.cyb.CYBModInfo;
 import net.minecraft.util.ResourceLocation;
 
 public class CYBResources {

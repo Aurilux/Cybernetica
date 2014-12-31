@@ -1,7 +1,7 @@
 package com.vivalux.cyb.client.gui.lexica;
 
 import com.vivalux.cyb.Cybernetica;
-import com.vivalux.cyb.lib.CYBResources;
+import com.vivalux.cyb.util.CYBResources;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;

@@ -1,6 +1,6 @@
 package com.vivalux.cyb.helper;
 
-import com.vivalux.cyb.lib.CYBModInfo;
+import com.vivalux.cyb.CYBModInfo;
 import cpw.mods.fml.common.FMLLog;
 import org.apache.logging.log4j.Level;
 

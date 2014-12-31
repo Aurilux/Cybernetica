@@ -1,7 +1,7 @@
 package com.vivalux.cyb.handler;
 
-import com.vivalux.cyb.lib.CYBModInfo;
-import com.vivalux.cyb.lib.CYBSettings;
+import com.vivalux.cyb.CYBModInfo;
+import com.vivalux.cyb.init.CYBSettings;
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.common.config.Configuration;

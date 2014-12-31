@@ -1,6 +1,6 @@
 package com.vivalux.cyb.handler;
 
-import com.vivalux.cyb.lib.CYBModInfo;
+import com.vivalux.cyb.CYBModInfo;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
